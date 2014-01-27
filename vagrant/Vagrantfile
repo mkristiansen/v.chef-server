@@ -8,6 +8,24 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+  config.vm.define :client do |client_config| 
+
+    client_config.vm.box = "precise64"
+    client_config.vm.network :private_network, :ip => "10.1.2.20"
+    client_config.vm.synced_folder host_cache_path, guest_cache_path
+    client_config.vm.hostname = "client1.local"
+    
+    config.vm.provision "chef_client" do |client|
+      client.chef_server_url = "https://10.1.2.10"
+      client.validation_key_path = "pem/chef-validator.pem"
+
+      client.delete_node = true
+      client.delete_client = true
+    end
+
+
+  end
+
   config.vm.define :chef do |chef_config|
  
     config.vm.provider :virtualbox do |vb|
