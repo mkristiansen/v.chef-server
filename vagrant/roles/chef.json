@@ -9,7 +9,7 @@
       "configuration": {
         "chef_server_webui": {
           "enable": true,
-	  "web_ui_admin_user_name": "admin",
+          "web_ui_admin_user_name": "admin",
           "web_ui_admin_default_password": “passw0rd”
         }
       }

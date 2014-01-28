@@ -2,3 +2,5 @@
 */.vagrant/*
 /gettingstarted/*
 /vagrant/pem/*
+/*/*.lock
+*/.bundle/*
