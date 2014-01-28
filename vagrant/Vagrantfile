@@ -45,5 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         chef.add_role(Pathname.new(role).basename(".*").to_s)
        end
     end
+
+    chef_config.vm.provision :shell, :inline => "sudo cp /etc/chef-server/*.pem /vagrant/pem"
   end
 end
