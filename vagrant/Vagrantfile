@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     chef_config.vm.box = "precise64"
+    chef_config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
     chef_config.vm.network :private_network, :ip => "10.1.2.10"
     chef_config.vm.synced_folder host_cache_path, guest_cache_path
     chef_config.vm.hostname = "chef"
