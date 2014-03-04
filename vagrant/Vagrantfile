@@ -8,11 +8,21 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.define :chef do |chef_config|
+    # Detects vagrant-omnibus plugin
+    if Vagrant.has_plugin?('vagrant-omnibus')
+      puts 'INFO:  Vagrant-omnibus plugin detected.'
+      config.omnibus.chef_version = :latest
+    else
+     puts "FATAL: Vagrant-omnibus plugin not detected. Please install the plugin with\n       'vagrant plugin install vagrant-omnibus' from any other directory\n       before continuing."
+      exit
+    end
+
+    config.vm.define :chef do |chef_config|
  
     config.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--memory", 1024]
+      #vb.gui = true
     end
 
     chef_config.vm.box = "precise64"
@@ -21,10 +31,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef_config.vm.synced_folder host_cache_path, guest_cache_path
     chef_config.vm.hostname = "chef"
 
-    chef_config.hostmanager.enabled = true
-    chef_config.hostmanager.manage_host = true
-    chef_config.hostmanager.ignore_private_ip = false
-    chef_config.hostmanager.aliases = %w(chef-server.local chef-server chef.local)
+    #chef_config.hostmanager.enabled = true
+    #chef_config.hostmanager.manage_host = true
+    #chef_config.hostmanager.ignore_private_ip = false
+    #chef_config.hostmanager.aliases = %w(chef-server.local chef-server chef.local)
+    chef_config.hostsupdater.aliases = ["chef-server.local", "chef-server", "chef.local"]
 
     VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('nodes', 'vagrant.json').read)
 
