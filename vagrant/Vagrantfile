@@ -35,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #chef_config.hostmanager.manage_host = true
     #chef_config.hostmanager.ignore_private_ip = false
     #chef_config.hostmanager.aliases = %w(chef-server.local chef-server chef.local)
-    chef_config.hostsupdater.aliases = ["chef-server.local", "chef-server", "chef.local"]
+    #chef_config.hostsupdater.aliases = ["chef-server.local", "chef-server", "chef.local"]
 
     VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('nodes', 'vagrant.json').read)
 
