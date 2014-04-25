@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 #^syntax detection
 
-site :opscode
+source "http://api.berkshelf.com"
 
-cookbook 'chef-server',
-  git: 'git://github.com/opscode-cookbooks/chef-server.git'
+cookbook 'chef-server'
 
-cookbook 'python',
-  git: 'git://github.com/opscode-cookbooks/python.git'
+cookbook 'python'
 
