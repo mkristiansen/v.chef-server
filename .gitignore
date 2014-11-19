@@ -1,6 +1,6 @@
 *.swp
-*/.vagrant/*
-/gettingstarted/*
-/vagrant/pem/*
-/*/*.lock
-*/.bundle/*
+.vagrant/*
+gettingstarted/*
+vagrant/pem/*
+*.lock
+*.bundle
