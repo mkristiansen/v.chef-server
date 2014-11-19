@@ -5,3 +5,4 @@ gettingstarted/*
 vagrant/pem/*
 *.lock
 *.bundle
+pem
